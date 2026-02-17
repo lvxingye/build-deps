@@ -18,11 +18,6 @@
 	url = https://github.com/FFmpeg/nv-codec-headers.git
 	branch = sdk/12.0
     shallow = true
-[submodule "third-party/FFmpeg/FFmpeg"]
-	path = third-party/FFmpeg/FFmpeg
-	url = https://github.com/FFmpeg/FFmpeg.git
-	branch = release/8.0
-    shallow = true
 [submodule "third-party/FFmpeg/SVT-AV1"]
 	path = third-party/FFmpeg/SVT-AV1
 	url = https://github.com/LizardByte-infrastructure/SVT-AV1.git
@@ -38,3 +33,6 @@
 	url = https://github.com/KhronosGroup/Vulkan-Loader.git
 	branch = main
     shallow = true
+[submodule "third-party/FFmpeg/FFmpeg"]
+	path = third-party/FFmpeg/FFmpeg
+	url = https://github.com/nyanmisaka/ffmpeg-rockchip.git
