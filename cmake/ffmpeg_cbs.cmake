@@ -40,6 +40,27 @@ elseif (CROSS_COMPILE_PPC)
             --arch=powerpc64le
             --enable-cross-compile)
     set(CBS_ARCH_PATH ppc)
+elseif(ROCKCHIP)
+    list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+
+    message("enable rockchip supprot")
+    # find dependencies
+    find_package(Rockchip REQUIRED)
+    find_package(LibV4L REQUIRED)
+    find_package(LibDRM REQUIRED)
+
+    # set rockchip platform specific compilation parameters
+    # no cross compile available currently
+    set(FFMPEG_EXTRA_CONFIGURE
+            --enable-version3
+            --enable-libdrm 
+            --enable-alsa 
+            --enable-libv4l2
+            --enable-rkmpp 
+            --enable-rkrga)
+
+    set(CBS_ARCH_PATH aarch64)
+
 else ()
     set(CBS_ARCH_PATH x86)
 endif ()
@@ -57,8 +78,11 @@ execute_process(
             --enable-static
             ${FFMPEG_EXTRA_CONFIGURE}
         WORKING_DIRECTORY ${FFMPEG_GENERATED_SRC_PATH}
-        COMMAND_ECHO STDOUT
-        COMMAND_ERROR_IS_FATAL ANY)
+        COMMAND_ECHO STDOUT)
+        
+        # this line is removed as COMMAND_ERROR_IS_FATAL is supported from 3.19 which conflicts with 
+        # the minimal version reqiurement above
+        # COMMAND_ERROR_IS_FATAL ANY)
 
 # Headers needed to link for Sunshine
 configure_file(${AVCODEC_GENERATED_SRC_PATH}/av1.h ${CBS_INCLUDE_PATH}/av1.h COPYONLY)
