@@ -1,6 +1,6 @@
 ---
 # ci workflow for rockchip
-name: Build ffmpeg
+name: Build ffmpeg Rk
 
 # only build for rockchip specific branches
 # or when manually trigered
@@ -121,7 +121,7 @@ jobs:
           #     --enable-libvpl
           #     --enable-nvenc
           #     --enable-mediafoundation
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-20.04
     defaults:
       run:
         shell: ${{ matrix.shell }}
