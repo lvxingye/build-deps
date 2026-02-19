@@ -121,7 +121,7 @@ jobs:
           #     --enable-libvpl
           #     --enable-nvenc
           #     --enable-mediafoundation
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     defaults:
       run:
         shell: ${{ matrix.shell }}
