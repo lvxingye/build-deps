@@ -133,7 +133,7 @@ jobs:
       - name: Checkout destination branch
         uses: actions/checkout@v4
         with:
-          ref: ffmpeg-${{ matrix.os_type }}-${{ matrix.arch }}
+          ref: rk_ubuntu2004
           path: ffmpeg-${{ matrix.os_type }}-${{ matrix.arch }}
           persist-credentials: false  # otherwise, the token used is the GITHUB_TOKEN, instead of the personal token
           fetch-depth: 0  # otherwise, will fail to push refs to dest repo
