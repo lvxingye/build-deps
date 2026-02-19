@@ -31,6 +31,16 @@ if (WIN32)
 endif ()
 
 if (CROSS_COMPILE_ARM)
+    if(ROCKCHIP)
+        list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+
+        message("enable rockchip supprot")
+        # find dependencies
+        find_package(Rockchip REQUIRED)
+        find_package(LibV4L REQUIRED)
+        find_package(LibDRM REQUIRED)
+
+    endif()
     set(FFMPEG_EXTRA_CONFIGURE
             --arch=aarch64
             --enable-cross-compile)
@@ -40,27 +50,6 @@ elseif (CROSS_COMPILE_PPC)
             --arch=powerpc64le
             --enable-cross-compile)
     set(CBS_ARCH_PATH ppc)
-elseif(ROCKCHIP)
-    list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
-
-    message("enable rockchip supprot")
-    # find dependencies
-    find_package(Rockchip REQUIRED)
-    find_package(LibV4L REQUIRED)
-    find_package(LibDRM REQUIRED)
-
-    # set rockchip platform specific compilation parameters
-    # no cross compile available currently
-    set(FFMPEG_EXTRA_CONFIGURE
-            --enable-version3
-            --enable-libdrm 
-            --enable-alsa 
-            --enable-libv4l2
-            --enable-rkmpp 
-            --enable-rkrga)
-
-    set(CBS_ARCH_PATH aarch64)
-
 else ()
     set(CBS_ARCH_PATH x86)
 endif ()

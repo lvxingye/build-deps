@@ -22,3 +22,10 @@
 	path = ffmpeg_sources/SVT-AV1
 	url = https://gitlab.com/AOMediaCodec/SVT-AV1.git
 	branch = v1.6.0
+[submodule "ffmpeg_sources/rkmpp"]
+	path = ffmpeg_sources/rkmpp
+	url = https://github.com/HermanChen/mpp.git
+[submodule "ffmpeg_sources/rkrga"]
+	path = ffmpeg_sources/rkrga
+	url = https://github.com/nyanmisaka/rk-mirrors.git
+	branch = jellyfin-rga
